@@ -1,0 +1,101 @@
+```yaml
+openapi: 3.0.1
+info:
+  title: VR Classroom Control API (MVP)
+  version: '0.1'
+servers:
+  - url: https://api.vrclass.example.com
+paths:
+  /auth/sso:
+    post:
+      summary: Exchange campus SSO assertion for platform token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sso_token:
+                  type: string
+      responses:
+        '200':
+          description: Platform token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token: { type: string }
+                  expires_in: { type: integer }
+  /courses/{courseId}/sessions:
+    post:
+      summary: Create a scheduled classroom session
+      parameters:
+        - in: path
+          name: courseId
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_time: { type: string, format: date-time }
+                duration_minutes: { type: integer }
+                host_user_id: { type: string }
+      responses:
+        '201':
+          description: created
+  /matchmaker/join:
+    post:
+      summary: Request join details for a user to enter a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id: { type: string }
+                user_id: { type: string }
+      responses:
+        '200':
+          description: connection metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  server_address: { type: string }
+                  server_port: { type: integer }
+                  join_token: { type: string }
+                  turn_servers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url: { type: string }
+                        username: { type: string }
+                        credential: { type: string }
+  /sessions/{sessionId}/recording:
+    post:
+      summary: Request session recording export
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '202':
+          description: export started
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+```
