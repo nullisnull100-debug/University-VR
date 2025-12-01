@@ -223,12 +223,86 @@ DemoClassroom (Scene)
 - Check PlayerController has playerCamera assigned
 - Verify Camera.main exists in scene
 
+## Networking Setup (Multiplayer)
+
+### 1. Install Photon Packages
+
+1. Open Unity Package Manager (Window > Package Manager)
+2. Click "+" > "Add package from git URL"
+3. Add: `https://github.com/photonengine/pun2.git`
+4. Or download from Asset Store: "PUN 2 - FREE"
+5. Also install "Photon Voice 2" for voice chat
+
+### 2. Configure Photon
+
+1. Go to [Photon Dashboard](https://dashboard.photonengine.com/)
+2. Create a new Photon PUN application
+3. Copy the App ID
+4. In Unity: Window > Photon Unity Networking > PUN Wizard
+5. Paste your App ID
+6. Configure Voice App ID if using Photon Voice
+
+### 3. Setup Network Scene
+
+Add these GameObjects to your scene:
+
+```
+├── --- NETWORKING ---
+│   ├── NetworkManager (empty GameObject)
+│   │   └── NetworkManager.cs component
+│   ├── VoiceChatManager (empty GameObject)
+│   │   └── VoiceChatManager.cs component
+│   │   └── PhotonVoiceNetwork component
+│   │   └── Recorder component (child object)
+│   └── NetworkLobbyUI (on Canvas)
+│       └── NetworkLobbyUI.cs component
+```
+
+### 4. Create Network Player Prefab
+
+1. Create a player prefab with:
+   - PhotonView component
+   - NetworkPlayer.cs component
+   - NetworkVoicePlayer.cs component
+   - Speaker component (for voice playback)
+2. Place prefab in `Resources/` folder (required for PhotonNetwork.Instantiate)
+3. Configure PhotonView to observe NetworkPlayer
+
+### 5. Network Whiteboard
+
+Replace `WhiteboardInteractable` with `NetworkedWhiteboard` for synchronized drawing.
+
+### Networking Scripts
+
+| Script | Description |
+|--------|-------------|
+| `NetworkManager.cs` | Handles Photon connection, room management, player spawning |
+| `NetworkPlayer.cs` | Syncs player position/rotation across network |
+| `VoiceChatManager.cs` | Voice chat with mute, push-to-talk, spatial audio |
+| `NetworkVoicePlayer.cs` | Per-player voice audio playback |
+| `NetworkLobbyUI.cs` | Connection/lobby UI for joining rooms |
+| `NetworkedWhiteboard.cs` | Synced whiteboard drawing |
+
+### Network Controls
+
+| Key | Action |
+|-----|--------|
+| M | Toggle mute |
+| T | Push-to-talk (when enabled) |
+| PageUp/Down | Adjust volume |
+
+### Quick Test
+
+1. Build and run the project
+2. Run another instance in Unity Editor
+3. Both should connect to the same room
+4. Verify you can see each other and voice chat works
+
 ## Next Steps
 
 1. **Add VR Support**: Integrate XR Interaction Toolkit for VR headsets
-2. **Networking**: Add Photon Fusion or Unity Netcode for multiplayer
-3. **Voice Chat**: Integrate Agora or Vivox for spatial audio
-4. **Content**: Add presentation slides, quizzes, and more interactive objects
+2. **Content**: Add presentation slides, quizzes, and more interactive objects
+3. **Recording**: Add session recording for playback
 
 ## File Locations
 
@@ -239,7 +313,8 @@ Repository Root/
 │   │   ├── Player/
 │   │   ├── UI/
 │   │   ├── Classroom/
-│   │   └── Interactables/
+│   │   ├── Interactables/
+│   │   └── Networking/
 │   ├── Scenes/
 │   ├── Prefabs/
 │   └── Materials/

@@ -2,7 +2,7 @@
 
 ## Demo Checklist
 
-### Phase 1: Core Demo (Current Focus)
+### Phase 1: Core Demo (Complete)
 - [x] Basic classroom layout script (ClassroomBootstrapper)
 - [x] Player controller with WASD movement
 - [x] First-person camera perspective
@@ -16,20 +16,25 @@
 - [x] Interactive podium (presentation mode)
 - [x] Unity setup documentation
 
-### Phase 2: Enhanced Demo
+### Phase 2: Multiplayer (Current Focus)
+- [x] Network manager (Photon PUN2)
+- [x] Remote player connection & sync
+- [x] Network player prefab with position sync
+- [x] Voice chat integration (Photon Voice)
+- [x] Push-to-talk and voice-activated modes
+- [x] Mute/unmute controls
+- [x] Spatial audio support
+- [x] Synchronized whiteboard (NetworkedWhiteboard)
+- [x] Network lobby UI
+- [x] Room creation and joining
+
+### Phase 3: Enhanced Demo
 - [ ] VR headset support (XR Interaction Toolkit)
 - [ ] Hand tracking / controller input
-- [ ] Spatial audio integration
 - [ ] Multiple classroom layouts
 - [ ] Student avatar customization
 - [ ] Instructor laser pointer
-
-### Phase 3: Multiplayer
-- [ ] Networking (Photon Fusion / Unity Netcode)
-- [ ] Voice chat integration
-- [ ] Synchronized whiteboard
 - [ ] User presence indicators
-- [ ] Session management
 
 ### Phase 4: LMS Integration
 - [ ] SSO authentication
@@ -49,7 +54,10 @@
 | E | Interact |
 | C | Clear whiteboard |
 | Escape | Menu |
+| M | Toggle mute (voice) |
+| T | Push-to-talk |
+| PageUp/Down | Adjust volume |
 
 ## Getting Started
 
-See `unity/SETUP_GUIDE.md` for Unity import instructions.
+See `unity/SETUP_GUIDE.md` for Unity import and networking setup instructions.
