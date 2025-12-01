@@ -26,20 +26,33 @@ Assets/
 ├── Scripts/
 │   ├── Player/
 │   │   ├── PlayerController.cs
-│   │   └── CameraController.cs
+│   │   ├── CameraController.cs
+│   │   └── AvatarSimple.cs
 │   ├── UI/
 │   │   ├── OnboardingMenu.cs
 │   │   ├── MainMenuController.cs
-│   │   └── GameplayHUD.cs
+│   │   ├── GameplayHUD.cs
+│   │   └── DemoUIController.cs
 │   ├── Classroom/
-│   │   └── ClassroomSceneManager.cs
+│   │   ├── ClassroomSceneManager.cs
+│   │   └── ClassroomBootstrapper.cs
 │   ├── Interactables/
 │   │   ├── InteractableBase.cs
 │   │   ├── WhiteboardInteractable.cs
 │   │   ├── InteractableDesk.cs
 │   │   └── InteractivePodium.cs
-│   ├── avatarsimple.cs
-│   └── Scripts-classroom.cs
+│   ├── Networking/
+│   │   ├── NetworkManager.cs
+│   │   ├── NetworkPlayer.cs
+│   │   ├── NetworkLobbyUI.cs
+│   │   ├── NetworkedWhiteboard.cs
+│   │   ├── VoiceChatManager.cs
+│   │   └── NetworkVoicePlayer.cs
+│   └── Instructor/
+│       ├── InstructorVerification.cs
+│       ├── InstructorAdminPanel.cs
+│       ├── StudentEngagementMonitor.cs
+│       └── AttendanceGradeManager.cs
 ```
 
 ### 3. Create the Demo Scene

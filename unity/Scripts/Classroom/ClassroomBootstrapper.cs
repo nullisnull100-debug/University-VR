@@ -62,18 +62,15 @@ public class ClassroomBootstrapper : MonoBehaviour
                     {
                         foreach (var rgr in rend.GetComponentsInChildren<Renderer>())
                         {
-                            // Create material instances to avoid modifying shared materials
-                            Material[] instanceMaterials = rgr.materials; // Creates instances automatically
-                            for (int i = 0; i < instanceMaterials.Length; i++)
+                            foreach (var mat in rgr.sharedMaterials)
                             {
-                                if (instanceMaterials[i] != null && instanceMaterials[i].HasProperty("_Color"))
+                                if (mat != null && mat.HasProperty("_Color"))
                                 {
-                                    var col = instanceMaterials[i].color;
+                                    var col = mat.color;
                                     col.a = 0.85f;
-                                    instanceMaterials[i].color = col;
+                                    mat.color = col;
                                 }
                             }
-                            rgr.materials = instanceMaterials;
                         }
                     }
                 }
