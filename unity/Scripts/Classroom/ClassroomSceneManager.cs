@@ -217,16 +217,20 @@ public class ClassroomSceneManager : MonoBehaviour
         return player;
     }
 
+    // Standard shader rendering mode constants
+    private const float STANDARD_SHADER_MODE_TRANSPARENT = 3f;
+    private const int TRANSPARENT_RENDER_QUEUE = 3000;
+
     void SetMaterialTransparent(Material mat)
     {
-        mat.SetFloat("_Mode", 3); // Transparent mode
+        mat.SetFloat("_Mode", STANDARD_SHADER_MODE_TRANSPARENT);
         mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
         mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
         mat.SetInt("_ZWrite", 0);
         mat.DisableKeyword("_ALPHATEST_ON");
         mat.EnableKeyword("_ALPHABLEND_ON");
         mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-        mat.renderQueue = 3000;
+        mat.renderQueue = TRANSPARENT_RENDER_QUEUE;
     }
 
     void HandleDemoInputs()

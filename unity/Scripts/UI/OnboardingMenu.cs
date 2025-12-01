@@ -41,6 +41,7 @@ public class OnboardingMenu : MonoBehaviour
     public int minimumAge = 13;
     public int maximumAge = 100;
     public bool allowSkip = true;
+    public string[] availableRoles = { "Student", "Instructor", "Observer" };
 
     private UserProfile currentProfile;
 
@@ -95,7 +96,7 @@ public class OnboardingMenu : MonoBehaviour
         if (roleDropdown != null)
         {
             roleDropdown.ClearOptions();
-            roleDropdown.AddOptions(new System.Collections.Generic.List<string> { "Student", "Instructor", "Observer" });
+            roleDropdown.AddOptions(new System.Collections.Generic.List<string>(availableRoles));
         }
 
         if (errorText != null)

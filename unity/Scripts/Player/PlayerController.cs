@@ -209,13 +209,20 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void TeleportTo(Vector3 position, Quaternion rotation)
     {
+        if (controller == null) return;
+        
         controller.enabled = false;
         transform.position = position;
         transform.rotation = rotation;
         yaw = rotation.eulerAngles.y;
         pitch = 0f;
         velocity = Vector3.zero;
-        controller.enabled = true;
+        
+        // Re-enable controller after position is set
+        if (this != null && gameObject.activeInHierarchy)
+        {
+            controller.enabled = true;
+        }
     }
 
     /// <summary>

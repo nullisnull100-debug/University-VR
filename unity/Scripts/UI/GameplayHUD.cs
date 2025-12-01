@@ -196,15 +196,23 @@ public class GameplayHUD : MonoBehaviour
         {
             interactionPromptText.text = message;
             interactionPromptText.enabled = true;
+            CancelInvoke(nameof(ClearMessage));
             Invoke(nameof(ClearMessage), duration);
         }
     }
 
     void ClearMessage()
     {
+        if (this == null || !gameObject.activeInHierarchy) return;
+        
         if (interactionPromptText != null)
         {
             interactionPromptText.text = "";
         }
+    }
+
+    void OnDestroy()
+    {
+        CancelInvoke();
     }
 }
