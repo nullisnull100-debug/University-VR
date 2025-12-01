@@ -298,11 +298,75 @@ Replace `WhiteboardInteractable` with `NetworkedWhiteboard` for synchronized dra
 3. Both should connect to the same room
 4. Verify you can see each other and voice chat works
 
+## Instructor System
+
+The instructor system provides secure verification and administrative controls.
+
+### Instructor Scripts
+
+| Script | Description |
+|--------|-------------|
+| `InstructorVerification.cs` | Secure verification via secret code, badge scan, or email |
+| `InstructorAdminPanel.cs` | Admin controls: mute/kick students, change environment |
+| `StudentEngagementMonitor.cs` | Tracks student focus, idle time, tab switching |
+| `AttendanceGradeManager.cs` | Attendance tracking and grade assignment |
+
+### Instructor Verification Methods
+
+1. **Secret Code**: Institution provides a secret code (8+ characters) + institution code (EDU prefix)
+2. **Badge Scan**: QR code scanning using device camera
+3. **Email Verification**: Institutional email (.edu domain) verification
+
+### Instructor Controls
+
+| Feature | Description |
+|---------|-------------|
+| Mute Student | Mute individual student's microphone |
+| Mute All | Mute all students at once |
+| Kick Student | Remove student from classroom |
+| Block Materials | Prevent students from accessing study materials |
+| Change Environment | Switch classroom to library, auditorium, lab, etc. |
+| Monitor Engagement | See which students are focused vs. tabbed away |
+| Mark Attendance | Mark students present/absent with auto-detection |
+| Assign Grades | Assign letter grades with scores and feedback |
+| Export Data | Export attendance/grades to CSV |
+
+### Instructor Hotkey
+
+| Key | Action |
+|-----|--------|
+| F1 | Toggle Instructor Admin Panel |
+
+### Setting Up Instructor Verification
+
+1. Add `InstructorVerification` component to a GameObject
+2. Create verification UI panel with:
+   - Secret code input field
+   - Institution code input field
+   - Verify button
+   - Badge scan button (optional)
+   - Email input field (optional)
+3. Wire up UI references in the Inspector
+
+### Setting Up Admin Panel
+
+1. Add `InstructorAdminPanel` component (requires PhotonView)
+2. Create admin panel UI with:
+   - Student list container
+   - Mute/Unmute buttons
+   - Kick button
+   - Environment dropdown
+   - Attendance section
+   - Grades section
+3. Add `StudentEngagementMonitor` to network player prefab
+4. Add `AttendanceGradeManager` for attendance/grade tracking
+
 ## Next Steps
 
 1. **Add VR Support**: Integrate XR Interaction Toolkit for VR headsets
 2. **Content**: Add presentation slides, quizzes, and more interactive objects
 3. **Recording**: Add session recording for playback
+4. **LMS Integration**: Connect to Canvas/Moodle for roster sync
 
 ## File Locations
 
@@ -314,7 +378,8 @@ Repository Root/
 │   │   ├── UI/
 │   │   ├── Classroom/
 │   │   ├── Interactables/
-│   │   └── Networking/
+│   │   ├── Networking/
+│   │   └── Instructor/
 │   ├── Scenes/
 │   ├── Prefabs/
 │   └── Materials/

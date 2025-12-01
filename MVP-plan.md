@@ -16,7 +16,7 @@
 - [x] Interactive podium (presentation mode)
 - [x] Unity setup documentation
 
-### Phase 2: Multiplayer (Current Focus)
+### Phase 2: Multiplayer (Complete)
 - [x] Network manager (Photon PUN2)
 - [x] Remote player connection & sync
 - [x] Network player prefab with position sync
@@ -28,7 +28,21 @@
 - [x] Network lobby UI
 - [x] Room creation and joining
 
-### Phase 3: Enhanced Demo
+### Phase 3: Instructor System (Complete)
+- [x] Instructor verification (secret code, badge scan, email)
+- [x] Separate instructor onboarding flow
+- [x] Admin panel for classroom control
+- [x] Mute individual students
+- [x] Mute all students
+- [x] Kick students from class
+- [x] Block access to study materials
+- [x] Student engagement monitoring (tab focus detection)
+- [x] Change classroom environment
+- [x] Attendance marking system
+- [x] Grade assignment system
+- [x] Export attendance/grades to CSV
+
+### Phase 4: Enhanced Demo
 - [ ] VR headset support (XR Interaction Toolkit)
 - [ ] Hand tracking / controller input
 - [ ] Multiple classroom layouts
@@ -36,14 +50,14 @@
 - [ ] Instructor laser pointer
 - [ ] User presence indicators
 
-### Phase 4: LMS Integration
+### Phase 5: LMS Integration
 - [ ] SSO authentication
 - [ ] Course roster sync
 - [ ] Session recording
-- [ ] Attendance tracking
 
 ## Controls
 
+### Student Controls
 | Key | Action |
 |-----|--------|
 | WASD | Move |
@@ -58,6 +72,31 @@
 | T | Push-to-talk |
 | PageUp/Down | Adjust volume |
 
+### Instructor Controls
+| Key | Action |
+|-----|--------|
+| F1 | Toggle Admin Panel |
+| (All student controls also available) |
+
+## Instructor Features
+
+### Verification
+- Secret code verification (institution-provided)
+- Badge/QR code scanning
+- Institutional email verification (.edu)
+- 30-day verification expiry
+
+### Admin Controls
+- Mute/unmute individual students
+- Mute/unmute all students
+- Kick students from classroom
+- Block study material access
+- Change classroom environment
+- Monitor student engagement
+- Mark attendance
+- Assign grades with feedback
+- Export data to CSV
+
 ## Getting Started
 
-See `unity/SETUP_GUIDE.md` for Unity import and networking setup instructions.
+See `unity/SETUP_GUIDE.md` for Unity import, networking, and instructor setup instructions.

@@ -171,6 +171,13 @@ public class OnboardingMenu : MonoBehaviour
         // Save profile
         SaveProfile();
 
+        // If instructor, require verification before proceeding
+        if (currentProfile.role == "Instructor")
+        {
+            ShowInstructorVerification();
+            return;
+        }
+
         // Trigger completion event
         onOnboardingComplete?.Invoke();
 
@@ -179,6 +186,49 @@ public class OnboardingMenu : MonoBehaviour
 
         Debug.Log($"Onboarding complete: {currentProfile.displayName}, Age: {currentProfile.age}, " +
                   $"School: {currentProfile.schoolName}, Major: {currentProfile.major}, Role: {currentProfile.role}");
+    }
+
+    /// <summary>
+    /// Show instructor verification panel.
+    /// </summary>
+    void ShowInstructorVerification()
+    {
+        var verification = FindObjectOfType<InstructorVerification>();
+        if (verification != null)
+        {
+            verification.ShowVerificationPanel();
+            verification.onVerificationSuccess.AddListener(OnInstructorVerified);
+            verification.onVerificationFailed.AddListener(OnInstructorVerificationFailed);
+        }
+        else
+        {
+            // No verification system, proceed as instructor
+            Debug.LogWarning("InstructorVerification not found. Proceeding without verification.");
+            onOnboardingComplete?.Invoke();
+            ShowMainMenu();
+        }
+    }
+
+    void OnInstructorVerified()
+    {
+        Debug.Log("Instructor verified successfully");
+        onOnboardingComplete?.Invoke();
+        ShowMainMenu();
+    }
+
+    void OnInstructorVerificationFailed()
+    {
+        // Reset role to Student if verification fails
+        currentProfile.role = "Student";
+        SaveProfile();
+        
+        ShowError("Instructor verification failed. Please try again or continue as a student.");
+        
+        // Reset role dropdown
+        if (roleDropdown != null)
+        {
+            roleDropdown.value = 0; // Assuming Student is first option
+        }
     }
 
     public void OnSkip()
