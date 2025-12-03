@@ -18,15 +18,28 @@ public class WhiteboardInteractable : MonoBehaviour
 
     List<LineRenderer> lines = new List<LineRenderer>();
     LineRenderer currentLine;
+    private bool materialWarningShown;
 
     void Start()
     {
         if (raycastCamera == null) raycastCamera = Camera.main;
         if (lineMaterial == null)
         {
-            // fallback simple material
-            lineMaterial = new Material(Shader.Find("Sprites/Default"));
-            lineMaterial.color = Color.black;
+            // Fallback: create a simple material at runtime
+            // Note: For production, assign a material in the Inspector to avoid runtime creation
+            Shader shader = Shader.Find("Sprites/Default");
+            if (shader != null)
+            {
+                lineMaterial = new Material(shader);
+                lineMaterial.color = Color.black;
+            }
+            
+            if (!materialWarningShown)
+            {
+                Debug.LogWarning("WhiteboardInteractable: No line material assigned. Using runtime-created material. " +
+                    "For better performance, assign a material in the Inspector.");
+                materialWarningShown = true;
+            }
         }
     }
 
