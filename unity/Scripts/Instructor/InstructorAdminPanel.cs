@@ -508,8 +508,13 @@ public class InstructorAdminPanel : MonoBehaviourPunCallbacks
         // In production, this would save to file or send to server
         Debug.Log($"Attendance Export:\n{attendanceData}");
         
-        // Copy to clipboard
+        // Copy to clipboard (Note: may not work on all platforms like WebGL/mobile)
+        // For production, consider platform-specific clipboard solutions or file export
+        #if UNITY_EDITOR || UNITY_STANDALONE
         GUIUtility.systemCopyBuffer = attendanceData;
+        #else
+        Debug.LogWarning("Clipboard copy not supported on this platform. Data logged to console.");
+        #endif
     }
 
     /// <summary>

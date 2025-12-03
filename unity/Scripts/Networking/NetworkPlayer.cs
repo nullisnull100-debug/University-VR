@@ -243,4 +243,14 @@ public class NetworkPlayer : MonoBehaviourPun, IPunObservable
             photonView.RPC("SetInstructor", RpcTarget.AllBuffered, true);
         }
     }
+
+    void OnDestroy()
+    {
+        // Clean up material instance to prevent memory leak
+        if (cachedMaterial != null)
+        {
+            Destroy(cachedMaterial);
+            cachedMaterial = null;
+        }
+    }
 }
