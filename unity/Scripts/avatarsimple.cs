@@ -1,1 +1,0 @@
-// Original content of avatarsimple.cs here
