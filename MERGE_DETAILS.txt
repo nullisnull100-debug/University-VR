@@ -1,0 +1,22 @@
+commit 00af13a1493343560f41d73082e1835e32af403f
+Merge: d29c1c6 44537ce
+Author: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>
+Date:   Wed Dec 3 19:08:57 2025 +0000
+
+    Merge MAIN branch into main to sync commits
+    
+    - Remove root-level .cs files (moved to unity/Scripts/)
+    - Add UPDATE_PLAN.md documentation
+    - Add unity/README.md for plug-and-play setup
+    - Add unity/Scripts/UniversityVR.asmdef assembly definition
+    - Fix deprecated crypto API (RNGCryptoServiceProvider -> RandomNumberGenerator)
+    - Add material cleanup to prevent memory leaks
+    - Add platform checks for clipboard operations
+
+ UPDATE_PLAN.md                                     | 63 ++++++++++++++++++++++
+ unity/README.md                                    | 59 ++++++++++++++++++++
+ unity/Scripts/Instructor/InstructorAdminPanel.cs   | 10 ++++
+ unity/Scripts/Instructor/InstructorVerification.cs |  4 ++
+ unity/Scripts/Networking/NetworkPlayer.cs          | 13 +++++
+ unity/Scripts/UniversityVR.asmdef                  | 25 +++++++++
+ 6 files changed, 174 insertions(+)
