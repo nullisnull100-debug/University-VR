@@ -37,17 +37,22 @@ fi
 
 echo ""
 echo "Step 2: Deleting MAIN branch..."
-delete_response=$(curl -s -X DELETE \
+delete_response=$(curl -s -w "\n%{http_code}" -X DELETE \
   -H "Authorization: Bearer $GITHUB_TOKEN" \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   "https://api.github.com/repos/$OWNER/$REPO/git/refs/heads/MAIN")
 
-if [ -z "$delete_response" ] || echo "$delete_response" | grep -q "\"message\".*\"Not Found\""; then
-    echo "✓ Successfully deleted MAIN branch"
+http_code=$(echo "$delete_response" | tail -n1)
+response_body=$(echo "$delete_response" | sed '$d')
+
+if [ "$http_code" = "204" ]; then
+    echo "✓ Successfully deleted MAIN branch (HTTP 204 - No Content)"
+elif [ "$http_code" = "404" ]; then
+    echo "⚠ MAIN branch was already deleted or doesn't exist (HTTP 404)"
 else
-    echo "✗ Failed to delete MAIN branch"
-    echo "Response: $delete_response"
+    echo "✗ Failed to delete MAIN branch (HTTP $http_code)"
+    echo "Response: $response_body"
     exit 1
 fi
 

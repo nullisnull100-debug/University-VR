@@ -98,7 +98,8 @@ This task requires:
 
 2. Run the script:
 ```bash
-cd /home/runner/work/University-VR/University-VR
+# Navigate to your local repository directory
+cd /path/to/University-VR
 export GITHUB_TOKEN="your_token_here"
 ./sync-branches.sh
 ```
