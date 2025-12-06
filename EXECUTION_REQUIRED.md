@@ -1,5 +1,7 @@
 # ⚠️ Manual Execution Required
 
+> **📖 New to terminal/command line?** See **[HOW_TO_EXECUTE.md](HOW_TO_EXECUTE.md)** for a step-by-step visual guide with detailed instructions on where and how to run the script.
+
 ## Summary
 I have **prepared everything needed** to sync the `main` branch with the `MAIN` branch and delete `MAIN`, but **manual execution is required** due to security restrictions.
 
