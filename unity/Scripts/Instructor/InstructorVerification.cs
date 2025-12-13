@@ -401,7 +401,7 @@ public class InstructorVerification : MonoBehaviour
         {
             // Use cryptographically secure random bytes for better security
             byte[] randomBytes = new byte[32];
-            using (var rng = new RNGCryptoServiceProvider())
+            using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(randomBytes);
             }
